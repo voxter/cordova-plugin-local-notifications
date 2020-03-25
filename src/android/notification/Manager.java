@@ -143,6 +143,12 @@ public final class Manager {
                 Log.e("local-notification", "deleteNotificationChannel");
 
                 mgr.deleteNotificationChannel(CHANNEL_ID);
+
+                Log.e("local-notification", "getNotificationChannel/1: " + mgr.getNotificationChannel(CHANNEL_ID).toString());
+
+                channel.setImportance(importance);
+
+                Log.e("local-notification", "getNotificationChannel/2: " + mgr.getNotificationChannel(CHANNEL_ID).toString());
             }
         }
 
