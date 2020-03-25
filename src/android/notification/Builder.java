@@ -130,7 +130,7 @@ public final class Builder {
         extras.putString(Options.EXTRA_SOUND, sound.toString());
 
         builder = findOrCreateBuilder()
-                .setDefaults(options.getDefaults())
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setExtras(extras)
                 .setOnlyAlertOnce(false)
                 .setChannelId(options.getChannel())
@@ -142,7 +142,7 @@ public final class Builder {
                 .setOngoing(options.isSticky())
                 .setColor(options.getColor())
                 .setVisibility(options.getVisibility())
-                .setPriority(options.getPrio())
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_CALL)
                 .setShowWhen(options.showClock())
                 .setUsesChronometer(options.showChronometer())
@@ -407,10 +407,10 @@ public final class Builder {
                 context, reqCode, intent, FLAG_UPDATE_CURRENT);
 
         builder.setContentIntent(contentIntent);
-
-        if (options.getImmediatePriority()) {
-            // builder.setFullScreenIntent(contentIntent, true);
-        }
+        builder.setFullScreenIntent(contentIntent, true);
+        // if (options.getImmediatePriority()) {
+        //     // 
+        // }
     }
 
     /**

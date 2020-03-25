@@ -247,9 +247,9 @@ public final class Options {
         return title;
     }
 
-    public Boolean getImmediatePriority() {
-        return options.optBoolean("immediatePriority", false);
-    }
+    // public Boolean getImmediatePriority() {
+    //     return options.optBoolean("immediatePriority", false);
+    // }
 
     /**
      * The notification color for LED.
@@ -396,6 +396,10 @@ public final class Options {
 
         if (resId == 0) {
             resId = assets.getResId(DEFAULT_ICON);
+        }
+
+        if (resId == 0) {
+            resId = context.getApplicationInfo().icon;
         }
 
         if (resId == 0) {
