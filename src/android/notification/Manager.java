@@ -116,19 +116,19 @@ public final class Manager {
      * TODO: temporary
      */
     @SuppressLint("WrongConstant")
-    private void createChannel(String channelId, String name, int importance) {
+    private void createChannel(String id, CharSequence name, int importance) {
         NotificationManager mgr = getNotMgr();
 
         if (SDK_INT < O)
             return;
 
-        NotificationChannel channel = mgr.getNotificationChannel(channelId);
+        NotificationChannel channel = mgr.getNotificationChannel(id);
 
         if (channel != null)
             return;
 
         channel = new NotificationChannel(
-                channelId, name, importance);
+                id, name, importance);
 
         mgr.createNotificationChannel(channel);
     }
