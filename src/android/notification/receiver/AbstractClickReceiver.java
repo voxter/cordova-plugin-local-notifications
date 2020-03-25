@@ -34,6 +34,8 @@ import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static de.appplant.cordova.plugin.notification.action.Action.CLICK_ACTION_ID;
 import static de.appplant.cordova.plugin.notification.action.Action.EXTRA_ID;
 
+import android.util.Log;
+
 /**
  * Abstract content receiver activity for local notifications. Creates the
  * local notification and calls the event functions for further proceeding.
@@ -99,6 +101,8 @@ abstract public class AbstractClickReceiver extends IntentService {
      * Launch main intent from package.
      */
     protected void launchApp() {
+        Log.e("de.appplant.cordova.plugin.notification", "launchApp");
+
         Context context = getApplicationContext();
         String pkgName  = context.getPackageName();
 

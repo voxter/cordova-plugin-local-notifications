@@ -47,6 +47,8 @@ import de.appplant.cordova.plugin.notification.action.Action;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static de.appplant.cordova.plugin.notification.Notification.EXTRA_UPDATE;
 
+import android.util.Log;
+
 /**
  * Builder class for local notifications. Build fully configured local
  * notification specified by JSON object passed from JS side.
@@ -454,8 +456,10 @@ public final class Builder {
                 .putExtra(Options.EXTRA_LAUNCH, action.isLaunchingApp());
 
         if (action.bringToFront()) {
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            Log.e("de.appplant.cordova.plugin.notification", "getPendingIntentForAction: true");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         } else {
+            Log.e("de.appplant.cordova.plugin.notification", "getPendingIntentForAction: false");
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         }
 
