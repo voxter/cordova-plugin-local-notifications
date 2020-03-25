@@ -111,6 +111,10 @@ public final class Manager {
      */
     @SuppressLint("WrongConstant")
     private void createDefaultChannel() {
+        for (JSONObject options : getOptions()) {
+            Log.e("de.appplant.cordova.plugin.notification", "createDefaultChannel: " + options.toString());
+        }
+
         NotificationManager mgr = getNotMgr();
 
         if (SDK_INT < O)
@@ -120,10 +124,6 @@ public final class Manager {
 
         if (channel != null)
             return;
-
-        for (JSONObject options : getOptions()) {
-            Log.e("de.appplant.cordova.plugin.notification", "createDefaultChannel: " + options.toString());
-        }
 
         channel = new NotificationChannel(
                 CHANNEL_ID, CHANNEL_NAME, IMPORTANCE_MAX);
