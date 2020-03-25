@@ -155,8 +155,7 @@ public final class Builder {
         }
 
         if (options.getCategory()) {
-            builder.setCategory(options.getCategory()); // NotificationCompat.CATEGORY_CALL
-            // "call"
+            builder.setCategory(options.getCategory());
         }
 
         if (options.isWithProgressBar()) {
