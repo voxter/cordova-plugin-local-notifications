@@ -59,6 +59,7 @@ public final class Manager {
 
     // TODO: temporary
     static final String CHANNEL_ID = "default-channel-id";
+    static final String CHANNEL_ID_IMMEDIATE = "default-channel-id-immediate";
 
     // TODO: temporary
     private static final CharSequence CHANNEL_NAME = "Default channel";
@@ -73,7 +74,7 @@ public final class Manager {
      */
     private Manager(Context context) {
         this.context = context;
-        createDefaultChannel();
+        createDefaultChannels();
     }
 
     /**
@@ -107,65 +108,30 @@ public final class Manager {
         return toast;
     }
 
+    private void createDefaultChannels() {
+        createChannel(CHANNEL_ID, IMPORTANCE_DEFAULT);
+        createChannel(CHANNEL_ID_IMMEDIATE, IMPORTANCE_MAX);
+    }
+
     /**
      * TODO: temporary
      */
     @SuppressLint("WrongConstant")
-    private void createDefaultChannel() {
+    private void createChannel(String channelId, int importance) {
         NotificationManager mgr = getNotMgr();
 
         if (SDK_INT < O)
             return;
 
-        NotificationChannel channel = mgr.getNotificationChannel(CHANNEL_ID);
-        int importance = IMPORTANCE_DEFAULT;
-
-        for (JSONObject options : getOptions()) {
-            Log.e("local-notification", "options: " + options.toString());
-            Log.e("local-notification", "immediate: " + String.valueOf(options.optBoolean("immediate", false)));
-
-            if (options.optBoolean("immediate", false)) {
-                importance = IMPORTANCE_MAX;
-                break;
-            }
-        }
-
-        Log.e("local-notification", "importance: " + String.valueOf(importance));
+        NotificationChannel channel = mgr.getNotificationChannel(channelId);
 
         if (channel != null) {
-            Log.e("local-notification", "getImportance: " + String.valueOf(channel.getImportance()));
-
-            if (channel.getImportance() == importance) {
-                Log.e("local-notification", "return");
-
-                return;
-            } else {
-                Log.e("local-notification", "deleteNotificationChannel");
-
-                mgr.deleteNotificationChannel(CHANNEL_ID);
-
-                Log.e("local-notification", "getNotificationChannel1: " + String.valueOf(mgr.getNotificationChannel(CHANNEL_ID) == null));
-                Log.e("local-notification", "getNotificationChannels: " + String.valueOf(mgr.getNotificationChannels().size()));
-                Log.e("local-notification", "channel1: " + channel.toString());
-
-                channel.setImportance(importance);
-
-                Log.e("local-notification", "channel/setImportance: " + channel.toString());
-            }
-        }
+            return;
 
         channel = new NotificationChannel(
-                CHANNEL_ID, CHANNEL_NAME, importance);
-
-        Log.e("local-notification", "channel2: " + channel.toString());
+                channelId, CHANNEL_NAME, importance);
 
         mgr.createNotificationChannel(channel);
-
-        Log.e("local-notification", "getNotificationChannel2: " + String.valueOf(mgr.getNotificationChannel(CHANNEL_ID) == null));
-
-        if (mgr.getNotificationChannel(CHANNEL_ID) != null) {
-            Log.e("local-notification", "getNotificationChannel3: " + mgr.getNotificationChannel(CHANNEL_ID).toString());
-        }
     }
 
     /**

@@ -215,7 +215,11 @@ public final class Options {
      * The channel id of that notification.
      */
     String getChannel() {
-        return options.optString("channel", Manager.CHANNEL_ID);
+        if (isImmediate()) {
+            return options.optString("channel", Manager.CHANNEL_ID_IMMEDIATE);
+        } else {
+            return options.optString("channel", Manager.CHANNEL_ID);
+        }
     }
 
     /**
