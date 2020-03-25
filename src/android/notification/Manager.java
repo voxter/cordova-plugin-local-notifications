@@ -131,7 +131,7 @@ public final class Manager {
         //     } else {
         //         mgr.deleteNotificationChannel(CHANNEL_ID);
         //     }
-        // }
+        }
 
         channel = new NotificationChannel(
                 CHANNEL_ID, CHANNEL_NAME, importance);
