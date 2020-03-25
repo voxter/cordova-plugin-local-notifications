@@ -44,6 +44,7 @@ import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.M;
 import static android.os.Build.VERSION_CODES.O;
 import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_DEFAULT;
+import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_MAX;
 import static de.appplant.cordova.plugin.notification.Notification.PREF_KEY_ID;
 import static de.appplant.cordova.plugin.notification.Notification.Type.TRIGGERED;
 
@@ -120,7 +121,7 @@ public final class Manager {
             return;
 
         channel = new NotificationChannel(
-                CHANNEL_ID, CHANNEL_NAME, IMPORTANCE_DEFAULT);
+                CHANNEL_ID, CHANNEL_NAME, IMPORTANCE_MAX); // IMPORTANCE_DEFAULT
 
         mgr.createNotificationChannel(channel);
     }
