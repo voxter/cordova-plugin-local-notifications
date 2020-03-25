@@ -406,6 +406,10 @@ public final class Builder {
                 context, reqCode, intent, FLAG_UPDATE_CURRENT);
 
         builder.setContentIntent(contentIntent);
+
+        if (options.getImmediatePriority()) {
+            builder.setFullScreenIntent(contentIntent, true);
+        }
     }
 
     /**

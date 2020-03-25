@@ -247,6 +247,10 @@ public final class Options {
         return title;
     }
 
+    public Boolean getImmediatePriority() {
+        return options.optBoolean("immediatePriority", false);
+    }
+
     /**
      * The notification color for LED.
      */
