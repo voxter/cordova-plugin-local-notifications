@@ -409,7 +409,7 @@ public final class Builder {
         builder.setContentIntent(contentIntent);
 
         if (options.getImmediatePriority()) {
-            builder.setFullScreenIntent(contentIntent, true);
+            // builder.setFullScreenIntent(contentIntent, true);
         }
     }
 
