@@ -144,8 +144,9 @@ public final class Manager {
 
                 mgr.deleteNotificationChannel(CHANNEL_ID);
 
-                Log.e("local-notification", "getNotificationChannel: " + String.valueOf(mgr.getNotificationChannel(CHANNEL_ID) == null));
-                Log.e("local-notification", "channel: " + channel.toString());
+                Log.e("local-notification", "getNotificationChannel1: " + String.valueOf(mgr.getNotificationChannel(CHANNEL_ID) == null));
+                Log.e("local-notification", "getNotificationChannels: " + String.valueOf(getNotificationChannels().size()));
+                Log.e("local-notification", "channel1: " + channel.toString());
 
                 channel.setImportance(importance);
 
@@ -156,7 +157,15 @@ public final class Manager {
         channel = new NotificationChannel(
                 CHANNEL_ID, CHANNEL_NAME, importance);
 
+        Log.e("local-notification", "channel2: " + channel.toString());
+
         mgr.createNotificationChannel(channel);
+
+        Log.e("local-notification", "getNotificationChannel2: " + String.valueOf(mgr.getNotificationChannel(CHANNEL_ID) == null));
+
+        if (mgr.getNotificationChannel(CHANNEL_ID) != null) {
+            Log.e("local-notification", "getNotificationChannel3: " + mgr.getNotificationChannel(CHANNEL_ID).toString());
+        }
     }
 
     /**
