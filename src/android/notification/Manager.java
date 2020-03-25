@@ -48,8 +48,6 @@ import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_MAX;
 import static de.appplant.cordova.plugin.notification.Notification.PREF_KEY_ID;
 import static de.appplant.cordova.plugin.notification.Notification.Type.TRIGGERED;
 
-import android.util.Log;
-
 /**
  * Central way to access all or single local notifications set by specific
  * state like triggered or scheduled. Offers shortcut ways to schedule,
@@ -59,10 +57,11 @@ public final class Manager {
 
     // TODO: temporary
     static final String CHANNEL_ID = "default-channel-id";
-    static final String CHANNEL_ID_IMMEDIATE = "default-channel-id-immediate";
+    static final String CHANNEL_ID_IMMEDIATE = "default-immediate-channel-id";
 
     // TODO: temporary
     private static final CharSequence CHANNEL_NAME = "Default channel";
+    private static final CharSequence CHANNEL_NAME_IMMEDIATE = "Default immediate channel";
 
     // The application context
     private Context context;
@@ -109,15 +108,15 @@ public final class Manager {
     }
 
     private void createDefaultChannels() {
-        createChannel(CHANNEL_ID, IMPORTANCE_DEFAULT);
-        createChannel(CHANNEL_ID_IMMEDIATE, IMPORTANCE_MAX);
+        createChannel(CHANNEL_ID, CHANNEL_NAME, IMPORTANCE_DEFAULT);
+        createChannel(CHANNEL_ID_IMMEDIATE, CHANNEL_NAME_IMMEDIATE, IMPORTANCE_MAX);
     }
 
     /**
      * TODO: temporary
      */
     @SuppressLint("WrongConstant")
-    private void createChannel(String channelId, int importance) {
+    private void createChannel(String channelId, String name, int importance) {
         NotificationManager mgr = getNotMgr();
 
         if (SDK_INT < O)
@@ -125,11 +124,11 @@ public final class Manager {
 
         NotificationChannel channel = mgr.getNotificationChannel(channelId);
 
-        if (channel != null) {
+        if (channel != null)
             return;
 
         channel = new NotificationChannel(
-                channelId, CHANNEL_NAME, importance);
+                channelId, name, importance);
 
         mgr.createNotificationChannel(channel);
     }
