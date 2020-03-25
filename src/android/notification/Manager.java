@@ -121,8 +121,9 @@ public final class Manager {
         if (channel != null)
             return;
 
-        
-        Log.e("de.appplant.cordova.plugin.notification", "createDefaultChannel: " + String.valueOf(getOptions().isImmediate()));
+        for (JSONObject options : getOptions()) {
+            Log.e("de.appplant.cordova.plugin.notification", "createDefaultChannel: " + options.toString());
+        }
 
         channel = new NotificationChannel(
                 CHANNEL_ID, CHANNEL_NAME, IMPORTANCE_MAX);
