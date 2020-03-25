@@ -29,6 +29,7 @@ import android.os.Bundle;
 import de.appplant.cordova.plugin.notification.Manager;
 import de.appplant.cordova.plugin.notification.Notification;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static de.appplant.cordova.plugin.notification.action.Action.CLICK_ACTION_ID;
@@ -101,8 +102,6 @@ abstract public class AbstractClickReceiver extends IntentService {
      * Launch main intent from package.
      */
     protected void launchApp() {
-        Log.e("de.appplant.cordova.plugin.notification", "launchApp");
-
         Context context = getApplicationContext();
         String pkgName  = context.getPackageName();
 
@@ -115,6 +114,7 @@ abstract public class AbstractClickReceiver extends IntentService {
 
         intent.addFlags(
               FLAG_ACTIVITY_REORDER_TO_FRONT
+            | FLAG_ACTIVITY_CLEAR_TOP
             | FLAG_ACTIVITY_SINGLE_TOP);
 
         context.startActivity(intent);

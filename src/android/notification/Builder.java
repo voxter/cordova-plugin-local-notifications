@@ -453,15 +453,8 @@ public final class Builder {
         Intent intent = new Intent(context, clickActivity)
                 .putExtra(Notification.EXTRA_ID, options.getId())
                 .putExtra(Action.EXTRA_ID, action.getId())
-                .putExtra(Options.EXTRA_LAUNCH, action.isLaunchingApp());
-
-        if (action.bringToFront()) {
-            Log.e("de.appplant.cordova.plugin.notification", "getPendingIntentForAction: true");
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        } else {
-            Log.e("de.appplant.cordova.plugin.notification", "getPendingIntentForAction: false");
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        }
+                .putExtra(Options.EXTRA_LAUNCH, action.isLaunchingApp())
+                .setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         if (extras != null) {
             intent.putExtras(extras);

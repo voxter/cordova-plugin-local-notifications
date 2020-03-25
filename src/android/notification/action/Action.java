@@ -97,10 +97,6 @@ public final class Action {
         return options.optBoolean("launch", false);
     }
 
-    public boolean bringToFront() {
-        return options.optBoolean("bringToFront", false);
-    }
-
     /**
      * Gets the type for the action.
      */

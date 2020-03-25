@@ -92,8 +92,6 @@ public class ClickReceiver extends AbstractClickReceiver {
      * Launch app if requested by user.
      */
     private void launchAppIf() {
-        Log.e("de.appplant.cordova.plugin.notification", "launchAppIf: " + String.valueOf(getIntent().getBooleanExtra(EXTRA_LAUNCH, true)));
-
         boolean doLaunch = getIntent().getBooleanExtra(EXTRA_LAUNCH, true);
 
         if (!doLaunch)

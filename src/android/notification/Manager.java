@@ -43,6 +43,7 @@ import de.appplant.cordova.plugin.badge.BadgeImpl;
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.M;
 import static android.os.Build.VERSION_CODES.O;
+import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_DEFAULT;
 import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_MAX;
 import static de.appplant.cordova.plugin.notification.Notification.PREF_KEY_ID;
 import static de.appplant.cordova.plugin.notification.Notification.Type.TRIGGERED;
@@ -111,22 +112,30 @@ public final class Manager {
      */
     @SuppressLint("WrongConstant")
     private void createDefaultChannel() {
-        for (JSONObject options : getOptions()) {
-            Log.e("de.appplant.cordova.plugin.notification", "createDefaultChannel: " + options.toString());
-        }
-
         NotificationManager mgr = getNotMgr();
 
         if (SDK_INT < O)
             return;
 
         NotificationChannel channel = mgr.getNotificationChannel(CHANNEL_ID);
+        int importance = IMPORTANCE_DEFAULT;
 
-        if (channel != null)
-            return;
+        for (JSONObject options : getOptions()) {
+            if (options.optBoolean("immediate", false)) {
+                importance = IMPORTANCE_MAX;
+            }
+        }
+
+        if (channel != null) {
+            if (channel.getImportance() == importance) {
+                return;
+            } else {
+                mgr.deleteNotificationChannel(CHANNEL_ID);
+            }
+        }
 
         channel = new NotificationChannel(
-                CHANNEL_ID, CHANNEL_NAME, IMPORTANCE_MAX);
+                CHANNEL_ID, CHANNEL_NAME, importance);
 
         mgr.createNotificationChannel(channel);
     }

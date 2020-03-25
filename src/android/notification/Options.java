@@ -502,9 +502,13 @@ public final class Options {
      * Gets the notifications priority.
      */
     int getPrio() {
-        int prio = options.optInt("priority");
+        if (isImmediate()) {
+            return PRIORITY_MAX;
+        } else {
+            int prio = options.optInt("priority");
 
-        return Math.min(Math.max(prio, PRIORITY_MIN), PRIORITY_MAX);
+            return Math.min(Math.max(prio, PRIORITY_MIN), PRIORITY_MAX);
+        }
     }
 
     /**
