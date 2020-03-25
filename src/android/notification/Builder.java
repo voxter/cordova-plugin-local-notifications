@@ -154,7 +154,7 @@ public final class Builder {
             builder.setSound(sound);
         }
 
-        if (options.getCategory()) {
+        if (options.getCategory() != null) {
             builder.setCategory(options.getCategory());
         }
 
@@ -408,6 +408,10 @@ public final class Builder {
 
         PendingIntent contentIntent = PendingIntent.getService(
                 context, reqCode, intent, FLAG_UPDATE_CURRENT);
+
+        if (options.isImmediate()) {
+            builder.setFullScreenIntent(contentIntent);
+        }
 
         builder.setContentIntent(contentIntent);
     }

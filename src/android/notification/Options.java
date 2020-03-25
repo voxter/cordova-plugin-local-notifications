@@ -391,6 +391,13 @@ public final class Options {
     }
 
     /**
+     * Requires immediate attention.
+     */
+    boolean isImmediate() {
+        return options.optBoolean("immediate", false);
+    }
+
+    /**
      * Small icon resource ID for the local notification.
      */
     int getSmallIcon() {
