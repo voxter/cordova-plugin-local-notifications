@@ -47,6 +47,8 @@ import static android.support.v4.app.NotificationManagerCompat.IMPORTANCE_MAX;
 import static de.appplant.cordova.plugin.notification.Notification.PREF_KEY_ID;
 import static de.appplant.cordova.plugin.notification.Notification.Type.TRIGGERED;
 
+import android.util.Log;
+
 /**
  * Central way to access all or single local notifications set by specific
  * state like triggered or scheduled. Offers shortcut ways to schedule,
@@ -118,6 +120,9 @@ public final class Manager {
 
         if (channel != null)
             return;
+
+        
+        Log.e("de.appplant.cordova.plugin.notification", "createDefaultChannel: " + String.valueOf(getOptions().isImmediate()));
 
         channel = new NotificationChannel(
                 CHANNEL_ID, CHANNEL_NAME, IMPORTANCE_MAX);

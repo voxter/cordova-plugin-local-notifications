@@ -410,7 +410,7 @@ public final class Builder {
                 context, reqCode, intent, FLAG_UPDATE_CURRENT);
 
         if (options.isImmediate()) {
-            builder.setFullScreenIntent(contentIntent);
+            builder.setFullScreenIntent(contentIntent, true);
         }
 
         builder.setContentIntent(contentIntent);
