@@ -384,6 +384,13 @@ public final class Options {
     }
 
     /**
+     * Category name.
+     */
+    String getCategory() {
+        return options.optString("category", null);
+    }
+
+    /**
      * Small icon resource ID for the local notification.
      */
     int getSmallIcon() {

@@ -154,8 +154,9 @@ public final class Builder {
             builder.setSound(sound);
         }
 
-        if (options.isCall()) {
-            builder.setCategory(NotificationCompat.CATEGORY_CALL);
+        if (options.getCategory()) {
+            builder.setCategory(options.getCategory()); // NotificationCompat.CATEGORY_CALL
+            // "call"
         }
 
         if (options.isWithProgressBar()) {
