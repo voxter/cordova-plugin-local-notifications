@@ -143,7 +143,7 @@ public final class Builder {
                 .setColor(options.getColor())
                 .setVisibility(options.getVisibility())
                 .setPriority(options.getPrio())
-                .setCategory(Notification.CATEGORY_CALL)
+                .setCategory(NotificationCompat.CATEGORY_CALL)
                 .setShowWhen(options.showClock())
                 .setUsesChronometer(options.showChronometer())
                 .setGroup(options.getGroup())
