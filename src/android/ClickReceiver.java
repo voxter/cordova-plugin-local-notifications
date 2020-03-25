@@ -34,8 +34,6 @@ import static de.appplant.cordova.plugin.localnotification.LocalNotification.fir
 import static de.appplant.cordova.plugin.notification.Options.EXTRA_LAUNCH;
 import static de.appplant.cordova.plugin.notification.Request.EXTRA_LAST;
 
-import android.util.Log;
-
 /**
  * The receiver activity is triggered when a notification is clicked by a user.
  * The activity calls the background callback and brings the launch intent

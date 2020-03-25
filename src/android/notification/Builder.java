@@ -47,8 +47,6 @@ import de.appplant.cordova.plugin.notification.action.Action;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static de.appplant.cordova.plugin.notification.Notification.EXTRA_UPDATE;
 
-import android.util.Log;
-
 /**
  * Builder class for local notifications. Build fully configured local
  * notification specified by JSON object passed from JS side.
